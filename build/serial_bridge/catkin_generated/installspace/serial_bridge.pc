@@ -1,0 +1,8 @@
+prefix=/home/odroid/catkin_ws/install
+
+Name: serial_bridge
+Description: Description of serial_bridge
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/odroid/catkin_ws/install/lib 
+Requires: 
