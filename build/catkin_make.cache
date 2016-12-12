@@ -1,2 +1,2 @@
-first_serial:ros_astra_camera:ros_astra_launch:serial_bridge
+first_serial:ros_astra_camera:ros_astra_launch:serial_bridge:serial_bridge _test
 -DCATKIN_DEVEL_PREFIX=/home/odroid/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/odroid/catkin_ws/install -G Unix Makefiles

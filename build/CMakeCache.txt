@@ -436,6 +436,12 @@ serial_bridge_BINARY_DIR:STATIC=/home/odroid/catkin_ws/build/serial_bridge
 //Value Computed by CMake
 serial_bridge_SOURCE_DIR:STATIC=/home/odroid/catkin_ws/src/serial_bridge
 
+//Value Computed by CMake
+serial_bridge_test_BINARY_DIR:STATIC=/home/odroid/catkin_ws/build/serial_bridge _test
+
+//Value Computed by CMake
+serial_bridge_test_SOURCE_DIR:STATIC=/home/odroid/catkin_ws/src/serial_bridge _test
+
 //The directory containing a CMake configuration file for smclib.
 smclib_DIR:PATH=/opt/ros/kinetic/share/smclib/cmake
 
@@ -575,7 +581,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

@@ -556,6 +556,19 @@ serial_bridge_node/fast:
 .PHONY : serial_bridge_node/fast
 
 #=============================================================================
+# Target rules for targets named serial_bridge_test_node
+
+# Build rule for target.
+serial_bridge_test_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 serial_bridge_test_node
+.PHONY : serial_bridge_test_node
+
+# fast build rule for target.
+serial_bridge_test_node/fast:
+	$(MAKE) -f "serial_bridge _test/CMakeFiles/serial_bridge_test_node.dir/build.make" "serial_bridge _test/CMakeFiles/serial_bridge_test_node.dir/build"
+.PHONY : serial_bridge_test_node/fast
+
+#=============================================================================
 # Target rules for targets named bond_generate_messages_lisp
 
 # Build rule for target.
@@ -1131,6 +1144,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... serial_bridge_node"
+	@echo "... serial_bridge_test_node"
 	@echo "... bond_generate_messages_lisp"
 	@echo "... bond_generate_messages_cpp"
 	@echo "... bond_generate_messages_eus"

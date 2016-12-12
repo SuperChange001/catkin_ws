@@ -1,5 +1,5 @@
 # Hashes of file build rules.
-ee91ddee31333468ef93358a3b741acc /home/odroid/catkin_ws/devel/include/astra_camera/AstraConfig.h
+d82407bee3ba3b002f86199d83884333 /home/odroid/catkin_ws/devel/include/astra_camera/AstraConfig.h
 297fdd5892b78f5a8f42815210119920 /home/odroid/catkin_ws/devel/include/astra_camera/GetSerial.h
 e47cf030307dc5290864dddbcff45929 /home/odroid/catkin_ws/devel/lib/python2.7/dist-packages/astra_camera/srv/_GetSerial.py
 0e013bcc838e6d38bf818b1331a8a2c7 /home/odroid/catkin_ws/devel/lib/python2.7/dist-packages/astra_camera/srv/__init__.py

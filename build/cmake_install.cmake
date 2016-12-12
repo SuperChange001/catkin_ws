@@ -120,6 +120,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/odroid/catkin_ws/build/ros_astra_launch/cmake_install.cmake")
   include("/home/odroid/catkin_ws/build/first_serial/cmake_install.cmake")
   include("/home/odroid/catkin_ws/build/serial_bridge/cmake_install.cmake")
+  include("/home/odroid/catkin_ws/build/serial_bridge _test/cmake_install.cmake")
   include("/home/odroid/catkin_ws/build/ros_astra_camera/cmake_install.cmake")
 
 endif()
