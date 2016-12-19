@@ -1,8 +1,0 @@
-prefix=/home/odroid/catkin_ws/devel
-
-Name: serial_bridge_test
-Description: Description of serial_bridge_test
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/odroid/catkin_ws/devel/lib 
-Requires: 
