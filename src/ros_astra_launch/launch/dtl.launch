@@ -8,5 +8,5 @@
 <param name="range_max" type="double" value="4"/>
 </node>
 
-<node pkg="odom_simulator" type="odom_publish" name="odom"/>
+<node pkg="odom_simulator" type="odom_publish" name="odom_publsih"/>
 </launch>
