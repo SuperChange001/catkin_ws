@@ -1,6 +1,6 @@
 <launch>
-
-<node name="base_laser_tf" pkg="tf" type="static_transform_publisher" args="0.15 0 0.15 0 0 0 base_link astra_scan 100"/>
+<!--param name="/use_sim_time" value="$(arg simulation)"/-->
+<node name="base_laser_tf" pkg="tf" type="static_transform_publisher" args="0.15 0 0.15 0 0 0 base_link scan 100"/>
 
 <node name="camera_depth_frame_to_map_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link camera_depth_frame 100"/>
 
