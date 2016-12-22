@@ -1,6 +1,7 @@
 #include <ros/ros.h>
 #include <tf/transform_broadcaster.h>
 #include <nav_msgs/Odometry.h>
+#define PI 3.14159265
 int main(int argc, char** argv){
   ros::init(argc, argv, "odometry_publisher");
 
@@ -14,13 +15,13 @@ int main(int argc, char** argv){
 
   double vx = 0.0;
   double vy = 0.0;
-  double vth = 0.1;
+  double vth = -0.0524;//-PI/30;
 
   ros::Time current_time, last_time;
   current_time = ros::Time::now();
   last_time = ros::Time::now();
 
-  ros::Rate r(10.0);
+  ros::Rate r(100.0);
   while(n.ok()){
 
     ros::spinOnce();               // check for incoming messages
