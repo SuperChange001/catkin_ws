@@ -2,6 +2,13 @@
 
 <node name="base_laser_tf" pkg="tf" type="static_transform_publisher" args="0.15 0 0.15 0 0 0 base_link astra_scan 100"/>
 
+<node name="camera_depth_frame_to_map_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link camera_depth_frame 100"/>
+
+<node name="camera_depth_optical_frame_to_map_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link camera_depth_optical_frame 100"/>
+<node name="camera_link_to_map_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link camera_link 100"/>
+<node name="camera_rgb_frame_to_map_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link camera_rgb_frame 100"/>
+<node name="camera_rgb_optical_frame_to_map_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link camera_rgb_optical_frame 100"/>
+
   <!--we use the kinect sensor as a fake laser scanner /-->
   <include file="$(find astra_launch)/launch/dtl.launch"/>
 
