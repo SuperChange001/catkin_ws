@@ -1,12 +1,13 @@
 <launch>
 <include file="$(find astra_launch)/launch/astra.launch"/>
+
+
 <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" args= "standalone depthimage_to_lasersacn/DepthImageToLaserScanNodelet">
 <remap from="image" to="/camera/depth/image_raw"/>
-
 <remap from="camera_info" to="/camera/depth/camera_info"/>
 <remap from="astra_scan" to="/scan"/>
 <param name="range_max" type="double" value="4"/>
 </node>
 
-<node pkg="odom_simulator" type="odom_publish" name="odom_publsih"/>
+<node pkg="odom_simulator" type="odom_publish" name="odom_publsih_node"/>
 </launch>

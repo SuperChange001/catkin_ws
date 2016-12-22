@@ -7,6 +7,7 @@
 subdirs(gtest)
 subdirs(ros_astra_launch)
 subdirs(hector_slam_example)
+subdirs(super_slam)
 subdirs(first_serial)
 subdirs(odom_simulator)
 subdirs(serial_bridge)

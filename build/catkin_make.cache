@@ -1,2 +1,2 @@
-first_serial:hector_slam_example:odom_simulator:ros_astra_camera:ros_astra_launch:serial_bridge:serial_bridge _test
+first_serial:hector_slam_example:odom_simulator:ros_astra_camera:ros_astra_launch:serial_bridge:serial_bridge _test:super_slam
 -DCATKIN_DEVEL_PREFIX=/home/odroid/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/odroid/catkin_ws/install -G Unix Makefiles
