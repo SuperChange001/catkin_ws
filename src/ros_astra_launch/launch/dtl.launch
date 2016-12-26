@@ -6,7 +6,10 @@
 <remap from="image" to="/camera/depth/image_raw"/>
 <remap from="camera_info" to="/camera/depth/camera_info"/>
 <remap from="astra_scan" to="/scan"/>
-<param name="range_max" type="double" value="4"/>
+<!--param name="range_max" type="double" value="2"/-->
+<param name="scan_height" type="double" value="1"/>
+<param name="scan_time" type="double" value="30"/>
+<param name="range_min" type="double" value="0.4"/>
 </node>
 
 <node pkg="odom_simulator" type="odom_publish" name="odom_publsih_node"/>

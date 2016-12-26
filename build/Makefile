@@ -877,7 +877,7 @@ nav_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f odom_simulator/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make odom_simulator/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
 .PHONY : nav_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -890,7 +890,7 @@ nav_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f odom_simulator/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make odom_simulator/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
 .PHONY : nav_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -903,7 +903,7 @@ nav_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f odom_simulator/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make odom_simulator/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
 .PHONY : nav_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -916,8 +916,34 @@ nav_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_py/fast:
-	$(MAKE) -f odom_simulator/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make odom_simulator/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+	$(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/build
 .PHONY : nav_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named nav_msgs_generate_messages_eus
+
+# Build rule for target.
+nav_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_eus
+.PHONY : nav_msgs_generate_messages_eus
+
+# fast build rule for target.
+nav_msgs_generate_messages_eus/fast:
+	$(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
+.PHONY : nav_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named move_base_node
+
+# Build rule for target.
+move_base_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 move_base_node
+.PHONY : move_base_node
+
+# fast build rule for target.
+move_base_node/fast:
+	$(MAKE) -f move_base/CMakeFiles/move_base_node.dir/build.make move_base/CMakeFiles/move_base_node.dir/build
+.PHONY : move_base_node/fast
 
 #=============================================================================
 # Target rules for targets named odom_publish
@@ -931,19 +957,6 @@ odom_publish: cmake_check_build_system
 odom_publish/fast:
 	$(MAKE) -f odom_simulator/CMakeFiles/odom_publish.dir/build.make odom_simulator/CMakeFiles/odom_publish.dir/build
 .PHONY : odom_publish/fast
-
-#=============================================================================
-# Target rules for targets named nav_msgs_generate_messages_eus
-
-# Build rule for target.
-nav_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_eus
-.PHONY : nav_msgs_generate_messages_eus
-
-# fast build rule for target.
-nav_msgs_generate_messages_eus/fast:
-	$(MAKE) -f odom_simulator/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make odom_simulator/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
-.PHONY : nav_msgs_generate_messages_eus/fast
 
 #=============================================================================
 # Target rules for targets named serial_bridge_node
@@ -1510,8 +1523,9 @@ help:
 	@echo "... nav_msgs_generate_messages_nodejs"
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... nav_msgs_generate_messages_py"
-	@echo "... odom_publish"
 	@echo "... nav_msgs_generate_messages_eus"
+	@echo "... move_base_node"
+	@echo "... odom_publish"
 	@echo "... serial_bridge_node"
 	@echo "... serial_bridge_test_node"
 	@echo "... astra_camera_node"
