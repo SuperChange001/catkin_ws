@@ -9,9 +9,7 @@
 #include <geometry_msgs/Twist.h>
 #include <turtlesim/Pose.h>
 #include "std_msgs/String.h"              //ros定义的String数据类型
-#include <ros/ros.h>
-#include <tf/transform_broadcaster.h>
-#include <nav_msgs/Odometry.h>
+
 
 using namespace std;
 using namespace boost::asio;           //定义一个命名空间，用于后面的读写操作
@@ -19,14 +17,14 @@ io_service iosev;
 serial_port sp(iosev, "/dev/ttyUSB0");         //定义传输的串口
 int linearx=0;
 int angularz=0;
+
 ros::Time current_time, last_time;
 unsigned int readlen;
 double x = 0.0;
 double y = 0.0;
 double th = 0.0;
-tf::TransformBroadcaster odom_broadcaster;
-ros::Publisher move_base_pub;
-ros::Subscriber move_base_sub;
+
+
 
 void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 {
@@ -41,11 +39,11 @@ angularz = 0;
 angularz=0;
 	}
 	if(msg.angular.z==2){
-		angularz = angularz+10;
+		angularz = angularz+3;
 		linearx =0;
 	}
 	if(msg.angular.z==-2){
-		angularz = angularz-10;
+		angularz = angularz-3;
 		linearx =0;
 	}
 
@@ -88,7 +86,7 @@ angularz=0;
 	);
 }
 
-void odom_calculate(double vx, double vy, double vth)
+void odom_calculate(tf::TransformBroadcaster&ob,ros::Publisher&p,double vx, double vy, double vth)
 {
     current_time = ros::Time::now();
 
@@ -117,7 +115,7 @@ void odom_calculate(double vx, double vy, double vth)
     odom_trans.transform.rotation = odom_quat;
 
     //send the transform
-    odom_broadcaster.sendTransform(odom_trans);
+    ob.sendTransform(odom_trans);
 
     //next, we'll publish the odometry message over ROS
     nav_msgs::Odometry odom;
@@ -137,7 +135,7 @@ void odom_calculate(double vx, double vy, double vth)
     odom.twist.twist.angular.z = vth;
 
     //publish the message
-    move_base_pub.publish(odom);
+    p.publish(odom);
 
     last_time = current_time;
 }
@@ -148,8 +146,13 @@ int main(int argc, char** argv) {
 
     ros::NodeHandle move_base_NodeHandle;
 
-    move_base_pub = move_base_NodeHandle.advertise<std_msgs::String>("odom", 1000);     
-    move_base_sub = move_base_NodeHandle.subscribe("turtle1/cmd_vel",1000,&cmdMessageReceived);
+    tf::TransformBroadcaster odom_broadcaster;
+
+//ros::Publisher move_base_pub;
+//ros::Subscriber move_base_sub;
+
+    ros::Publisher move_base_pub = move_base_NodeHandle.advertise<std_msgs::String>("odom", 1000);     
+    ros::Subscriber move_base_sub = move_base_NodeHandle.subscribe("turtle1/cmd_vel",1000,&cmdMessageReceived);
 
     
 
@@ -192,7 +195,7 @@ int main(int argc, char** argv) {
             double vy = 0.0;
             double vth = 0.0;//-PI/30;
 
-            odom_calculate(vx , vy, vth);
+            odom_calculate(odom_broadcaster, move_base_pub, vx , vy, vth);
 			//loop_rate.sleep();
 
             // get speed, so can start calculate9

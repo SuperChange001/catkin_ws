@@ -29,12 +29,6 @@ turtlesim/Pose.h
 -
 std_msgs/String.h
 /home/odroid/catkin_ws/src/move_base/src/std_msgs/String.h
-ros/ros.h
--
-tf/transform_broadcaster.h
--
-nav_msgs/Odometry.h
--
 
 /opt/ros/kinetic/include/XmlRpcDecl.h
 ros/macros.h
