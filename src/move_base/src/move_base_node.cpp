@@ -24,7 +24,9 @@ double x = 0.0;
 double y = 0.0;
 double th = 0.0;
 
-
+// v m/s * 100
+	// r degree/s 
+char commandbuf[]="a2v:+0000,w:+000,r:360b";
 
 void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 {
@@ -32,11 +34,11 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 
 	if(msg.linear.x==2){
 		linearx = linearx+10;
-angularz = 0;
+        angularz = 0;
 	}
 	if(msg.linear.x==-2){
 		linearx = linearx-10;
-angularz=0;
+        angularz=0;
 	}
 	if(msg.angular.z==2){
 		angularz = angularz+3;
@@ -47,10 +49,15 @@ angularz=0;
 		linearx =0;
 	}
 
-	
-	// v m/s * 100
-	// r degree/s 
-	char commandbuf[]="a2v:+1000,w:+360,r:360b";
+	if(linearx>80)
+	    linearx=80;
+    if(linearx<-80)
+        linearx=-80;
+
+    if(angularz>30)
+	    angularz=30;
+    if(angularz<-30)
+        angularz=-30;
 	
 	float vsf = linearx;//msg.linear.x * 100;
 	if(vsf<0)
@@ -58,6 +65,10 @@ angularz=0;
 		commandbuf[4] = '-';
 		vsf = -vsf;
 	}
+    else
+    {
+        commandbuf[4] = '+';
+    }
 	unsigned int	vsi = (unsigned int)vsf;
 	commandbuf[5] = 0x30 + vsi%10000/1000;
 	commandbuf[6] = 0x30 + vsi%1000/100;
@@ -70,13 +81,15 @@ angularz=0;
 		commandbuf[12] = '-';
 		rsf = -rsf;		
 	}
+    else
+    {
+        commandbuf[12] = '+';
+    }
 	unsigned int rsi = (unsigned int)rsf;
 	commandbuf[13] = 0x30 + rsi%1000/100;
 	commandbuf[14] = 0x30 + rsi%100/10;
 	commandbuf[15] = 0x30 + rsi%10;
 
-	// Serial send Demo just for test
-	write(sp, buffer(commandbuf, 23));  
 
 	ROS_INFO_STREAM("Getting command:"
 		<<"linear"<<msg.linear.x
@@ -140,6 +153,14 @@ void odom_calculate(tf::TransformBroadcaster&ob,ros::Publisher&p,double vx, doub
     last_time = current_time;
 }
 
+
+void handle_read(char *buf,boost::system::error_code ec,
+    std::size_t bytes_transferred)
+{
+    //cout.write(buf, bytes_transferred);
+ROS_INFO("Get Bytes Data");
+}
+
 int main(int argc, char** argv) {
 
     ros::init(argc, argv, "move_base");       //初始化节点
@@ -148,27 +169,22 @@ int main(int argc, char** argv) {
 
     tf::TransformBroadcaster odom_broadcaster;
 
-//ros::Publisher move_base_pub;
-//ros::Subscriber move_base_sub;
 
-    ros::Publisher move_base_pub = move_base_NodeHandle.advertise<std_msgs::String>("odom", 1000);     
+      
     ros::Subscriber move_base_sub = move_base_NodeHandle.subscribe("turtle1/cmd_vel",1000,&cmdMessageReceived);
-
+   ros::Publisher move_base_pub = move_base_NodeHandle.advertise<nav_msgs::Odometry>("odom", 1000);   
+  	
     
-
-    ros::spin();
-
-  	ros::Rate loop_rate(2);
-
     sp.set_option(serial_port::baud_rate(115200));   
     sp.set_option(serial_port::flow_control());
     sp.set_option(serial_port::parity());
     sp.set_option(serial_port::stop_bits());
     sp.set_option(serial_port::character_size(8));
-    write(sp, buffer("Hello world", 12)); 
-    while (ros::ok()) {
-        ros::spinOnce();
+   // write(sp, buffer("Hello world", 12)); 
 
+    ros::Rate loop_rate(50);
+    while (ros::ok()) {
+    
         boost::asio::streambuf buf;			// new an stream buffer		
 		read_until (sp,buf,0xBA);			// read out the data from serial
 		readlen = buf.size();				// To get the data length
@@ -176,7 +192,8 @@ int main(int argc, char** argv) {
 		char Charbuf[readlen+1];            // new a normal buffer to copy the data for streabuf
 		buf.sgetn(Charbuf,readlen);			// copy the data
 		Charbuf[readlen-1]='\0';			// put an '\0' for making a string smoothly
-		
+	    
+
 		if(Charbuf[0]==0xAB)//to check if there has a frame header
 		{
 			// remode frame headr(0xAB) and rear(0xBA)
@@ -187,22 +204,37 @@ int main(int argc, char** argv) {
 
 			msg.data = ss.str();
 		 
-			ROS_INFO("Get %dBytes Data: %s", readlen, msg.data.c_str());//打印接受到的字符串
+			//ROS_INFO("Get %dBytes Data: %s", readlen, msg.data.c_str());//打印接受到的字符串
+double vx=0,vth=0;
+            if(Charbuf[1]<128&&Charbuf[1]>=0)
+		        vx = Charbuf[1]*0.01;
+            else
+                vx = (Charbuf[1]-256)*0.01;
 
-			//move_base_pub.publish(msg);   //发布消息
-
-		    double vx = 0.0;
             double vy = 0.0;
-            double vth = 0.0;//-PI/30;
 
+            if(Charbuf[2]<128&&Charbuf[2]>=0)
+		        vth = Charbuf[2]*3.14156265/180;//-PI/30;
+            else
+                vth = (Charbuf[2]-256)*3.14156265/180;//-PI/30;
+            
+            
+            ROS_INFO_STREAM("Linearx:"<<vx<<"angularz"<<vth);
             odom_calculate(odom_broadcaster, move_base_pub, vx , vy, vth);
-			//loop_rate.sleep();
+			
 
             // get speed, so can start calculate9
 
+            // Serial send Demo just for test
+	        write(sp, buffer(commandbuf, 23));  
 
+            ros::spinOnce();
+
+			loop_rate.sleep();
             
 		}
+        
+
     }
     
     iosev.run(); 
