@@ -32,6 +32,6 @@
         <param name="lasamplerange" value="0.005"/>
         <param name="lasamplestep" value="0.005"/>
     </node>
-
+<node pkg="move_base" type="move_base_node" name="move_base_node" output="screen"/>
 
 </launch>

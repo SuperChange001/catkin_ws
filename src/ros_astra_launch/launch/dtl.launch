@@ -12,5 +12,5 @@
 <param name="range_min" type="double" value="0.4"/>
 </node>
 
-<node pkg="odom_simulator" type="odom_publish" name="odom_publsih_node"/>
+<!--node pkg="odom_simulator" type="odom_publish" name="odom_publsih_node"/-->
 </launch>
