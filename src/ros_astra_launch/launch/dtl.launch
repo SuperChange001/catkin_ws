@@ -11,6 +11,6 @@
 <param name="scan_time" type="double" value="30"/>
 <param name="range_min" type="double" value="0.4"/>
 </node>
-
+<node pkg="move_base" type="move_base_node" name="move_base_node" output="screen"/>
 <!--node pkg="odom_simulator" type="odom_publish" name="odom_publsih_node"/-->
 </launch>

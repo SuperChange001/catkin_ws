@@ -18,7 +18,7 @@ serial_port sp(iosev, "/dev/ttyUSB0");         //定义传输的串口
 int linearx=0;
 int angularz=0;
 
-ros::Time current_time, last_time;
+ros::Time current_time;
 unsigned int readlen;
 double x = 0.0;
 double y = 0.0;
@@ -26,7 +26,7 @@ double th = 0.0;
 
 // v m/s * 100
 	// r degree/s 
-char commandbuf[]="a2v:+0000,w:+000,r:360b";
+char commandbuf[]="a2v:+aaaa,w:+000,r:360b";
 
 void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 {
@@ -41,11 +41,11 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
         angularz=0;
 	}
 	if(msg.angular.z==2){
-		angularz = angularz+3;
+		angularz = angularz+10;
 		linearx =0;
 	}
 	if(msg.angular.z==-2){
-		angularz = angularz-3;
+		angularz = angularz-10;
 		linearx =0;
 	}
 
@@ -89,7 +89,7 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 	commandbuf[13] = 0x30 + rsi%1000/100;
 	commandbuf[14] = 0x30 + rsi%100/10;
 	commandbuf[15] = 0x30 + rsi%10;
-
+        angularz = 0;
 
 	ROS_INFO_STREAM("Getting command:"
 		<<"linear"<<msg.linear.x
@@ -99,19 +99,8 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 	);
 }
 
-void odom_calculate(tf::TransformBroadcaster&ob,ros::Publisher&p,double vx, double vy, double vth)
+void odom_calculate(tf::TransformBroadcaster&ob,ros::Publisher&p,double vx, double vy, double vth,double x, double y, double th)
 {
-    current_time = ros::Time::now();
-
-    //compute odometry in a typical way given the velocities of the robot
-    double dt = (current_time - last_time).toSec();
-    double delta_x = (vx * cos(th) - vy * sin(th)) * dt;
-    double delta_y = (vx * sin(th) + vy * cos(th)) * dt;
-    double delta_th = vth * dt;
-
-    x += delta_x;
-    y += delta_y;
-    th += delta_th;
 
     //since all odometry is 6DOF we'll need a quaternion created from yaw
     geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(th);
@@ -150,7 +139,7 @@ void odom_calculate(tf::TransformBroadcaster&ob,ros::Publisher&p,double vx, doub
     //publish the message
     p.publish(odom);
 
-    last_time = current_time;
+//ROS_INFO("publish once");
 }
 
 
@@ -181,12 +170,17 @@ int main(int argc, char** argv) {
     sp.set_option(serial_port::stop_bits());
     sp.set_option(serial_port::character_size(8));
    // write(sp, buffer("Hello world", 12)); 
+ write(sp, buffer(commandbuf, 23));
+    commandbuf[5] = 0x30;
+        commandbuf[6] = 0x30;
+        commandbuf[7] = 0x30;
+        commandbuf[8] = 0x30;
 
     ros::Rate loop_rate(50);
     while (ros::ok()) {
-    
+        ros::spinOnce();
         boost::asio::streambuf buf;			// new an stream buffer		
-		read_until (sp,buf,0xBA);			// read out the data from serial
+		read_until (sp,buf,'b');			// read out the data from serial
 		readlen = buf.size();				// To get the data length
 	
 		char Charbuf[readlen+1];            // new a normal buffer to copy the data for streabuf
@@ -194,7 +188,7 @@ int main(int argc, char** argv) {
 		Charbuf[readlen-1]='\0';			// put an '\0' for making a string smoothly
 	    
 
-		if(Charbuf[0]==0xAB)//to check if there has a frame header
+		if(Charbuf[0]=='a')//to check if there has a frame header
 		{
 			// remode frame headr(0xAB) and rear(0xBA)
 			string str(&Charbuf[1],&Charbuf[readlen-1]);            //将数组转化为字符串
@@ -203,40 +197,57 @@ int main(int argc, char** argv) {
 			ss <<str;
 
 			msg.data = ss.str();
-		 
-			//ROS_INFO("Get %dBytes Data: %s", readlen, msg.data.c_str());//打印接受到的字符串
-double vx=0,vth=0;
-            if(Charbuf[1]<128&&Charbuf[1]>=0)
-		        vx = Charbuf[1]*0.01;
-            else
-                vx = (Charbuf[1]-256)*0.01;
+            current_time = ros::Time::now();		 
+		//	ROS_INFO("Get %dBytes Data: %s", readlen, msg.data.c_str());//打印接受到的字符串
+           double vx=0,vth=0,x,y,th;
+	    vx = (Charbuf[5]-0x30)+(Charbuf[7]-0x30)*0.1+(Charbuf[8]-0x30)*0.01;
+	    if(Charbuf[4]=='-')
+		vx = -vx;
 
-            double vy = 0.0;
+	    vth = (Charbuf[15]-0x30)*10+(Charbuf[16]-0x30)+(Charbuf[18]-0x30)*0.1;        
+	    if(Charbuf[14]=='-')
+		vth = -vth;
+	    
+	    x = (Charbuf[24]-0x30)*10+(Charbuf[25]-0x30)+(Charbuf[26]-0x30)*0.1+(Charbuf[27]-0x30)*0.01+(Charbuf[28]-0x30)*0.001;
+	    if(Charbuf[23]=='-')
+		x=-x;
 
-            if(Charbuf[2]<128&&Charbuf[2]>=0)
-		        vth = Charbuf[2]*3.14156265/180;//-PI/30;
-            else
-                vth = (Charbuf[2]-256)*3.14156265/180;//-PI/30;
-            
-            
-            ROS_INFO_STREAM("Linearx:"<<vx<<"angularz"<<vth);
-            odom_calculate(odom_broadcaster, move_base_pub, vx , vy, vth);
-			
+	    y = (Charbuf[34]-0x30)*10+(Charbuf[35]-0x30)+(Charbuf[36]-0x30)*0.1+(Charbuf[37]-0x30)*0.01+(Charbuf[38]-0x30)*0.001;
+	    if(Charbuf[33]=='-')		
+		y =-y;
 
-            // get speed, so can start calculate9
+            th = (Charbuf[43]-0x30)*100+(Charbuf[44]-0x30)*10+(Charbuf[45]-0x30);
+	    double rvth = vth/180*3.14159265;
+	    double rth = th/180*3.14159265;
 
-            // Serial send Demo just for test
-	        write(sp, buffer(commandbuf, 23));  
+            odom_calculate(odom_broadcaster, move_base_pub, vx , 0, rvth,x,y,rth);
 
-            ros::spinOnce();
+// odom_calculate(odom_broadcaster, move_base_pub, 0,0,0,0,0,0);
+	    //ROS_INFO_STREAM("vx:"<<vx<<",vth:"<<vth<<",x:"<<x<<",y:"<<y<<",th:"<<th);
+	//since all odometry is 6DOF we'll need a quaternion created from yaw
 
-			loop_rate.sleep();
+       write(sp, buffer(commandbuf, 23));  
+	   commandbuf[13] = 0x30;
+	   commandbuf[14] = 0x30;
+       commandbuf[15] = 0x30;
+          
+
+           
+
+	   loop_rate.sleep();
             
 		}
         
 
     }
-    
+
+    	commandbuf[5] = '0';
+        commandbuf[6] = '0';
+        commandbuf[7] = '0';
+        commandbuf[8] = '0';
+     write(sp, buffer(commandbuf, 23));
+
+
     iosev.run(); 
     return 0;
 
