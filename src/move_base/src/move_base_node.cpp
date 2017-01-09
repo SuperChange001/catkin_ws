@@ -41,11 +41,11 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
         angularz=0;
 	}
 	if(msg.angular.z==2){
-		angularz = angularz+10;
+		angularz = angularz+3;
 		linearx =0;
 	}
 	if(msg.angular.z==-2){
-		angularz = angularz-10;
+		angularz = angularz-3;
 		linearx =0;
 	}
 
@@ -54,11 +54,14 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
     if(linearx<-80)
         linearx=-80;
 
-    if(angularz>30)
-	    angularz=30;
-    if(angularz<-30)
-        angularz=-30;
-	
+    if(angularz>90)
+	    angularz=90;
+    if(angularz<-90)
+        angularz=-90;
+if(angularz!=0)
+{
+linearx =0;
+}	
 	float vsf = linearx;//msg.linear.x * 100;
 	if(vsf<0)
 	{
@@ -150,6 +153,7 @@ void handle_read(char *buf,boost::system::error_code ec,
 ROS_INFO("Get Bytes Data");
 }
 
+int cnt;
 int main(int argc, char** argv) {
 
     ros::init(argc, argv, "move_base");       //初始化节点
@@ -223,7 +227,13 @@ int main(int argc, char** argv) {
             odom_calculate(odom_broadcaster, move_base_pub, vx , 0, rvth,x,y,rth);
 
 // odom_calculate(odom_broadcaster, move_base_pub, 0,0,0,0,0,0);
-	    //ROS_INFO_STREAM("vx:"<<vx<<",vth:"<<vth<<",x:"<<x<<",y:"<<y<<",th:"<<th);
+	  
+	   cnt++;
+	if(cnt==20)
+	{
+	 cnt =0;
+ 	 ROS_INFO_STREAM("vx:"<<vx<<",vth:"<<vth<<",x:"<<x<<",y:"<<y<<",th:"<<th);
+	}
 	//since all odometry is 6DOF we'll need a quaternion created from yaw
 
        write(sp, buffer(commandbuf, 23));  
