@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/odroid/catkin_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -78,6 +67,27 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -88,6 +98,17 @@ install/local: preinstall
 install/local/fast: install/local
 
 .PHONY : install/local/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -111,27 +132,6 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,79 +166,94 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-.PHONY : move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/rule
+.PHONY : move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-nav_msgs_generate_messages_lisp: move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+move_base_msgs_generate_messages_cpp: move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : nav_msgs_generate_messages_lisp
+.PHONY : move_base_msgs_generate_messages_cpp
 
 # fast build rule for target.
-nav_msgs_generate_messages_lisp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
-.PHONY : nav_msgs_generate_messages_lisp/fast
+move_base_msgs_generate_messages_cpp/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/build.make move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/build
+.PHONY : move_base_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-.PHONY : move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
+move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/rule
+.PHONY : move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-nav_msgs_generate_messages_nodejs: move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
+move_base_msgs_generate_messages_eus: move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/rule
 
-.PHONY : nav_msgs_generate_messages_nodejs
+.PHONY : move_base_msgs_generate_messages_eus
 
 # fast build rule for target.
-nav_msgs_generate_messages_nodejs/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
-.PHONY : nav_msgs_generate_messages_nodejs/fast
+move_base_msgs_generate_messages_eus/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/build.make move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/build
+.PHONY : move_base_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-.PHONY : move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
+move_base/CMakeFiles/move_base.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/move_base.dir/rule
+.PHONY : move_base/CMakeFiles/move_base.dir/rule
 
 # Convenience name for target.
-nav_msgs_generate_messages_cpp: move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
+move_base: move_base/CMakeFiles/move_base.dir/rule
 
-.PHONY : nav_msgs_generate_messages_cpp
+.PHONY : move_base
 
 # fast build rule for target.
-nav_msgs_generate_messages_cpp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
-.PHONY : nav_msgs_generate_messages_cpp/fast
+move_base/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base.dir/build.make move_base/CMakeFiles/move_base.dir/build
+.PHONY : move_base/fast
 
 # Convenience name for target.
-move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-.PHONY : move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/rule
+.PHONY : move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-nav_msgs_generate_messages_py: move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+move_base_msgs_generate_messages_py: move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/rule
 
-.PHONY : nav_msgs_generate_messages_py
+.PHONY : move_base_msgs_generate_messages_py
 
 # fast build rule for target.
-nav_msgs_generate_messages_py/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/build
-.PHONY : nav_msgs_generate_messages_py/fast
+move_base_msgs_generate_messages_py/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/build.make move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/build
+.PHONY : move_base_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-.PHONY : move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+move_base/CMakeFiles/move_base_gencfg.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/move_base_gencfg.dir/rule
+.PHONY : move_base/CMakeFiles/move_base_gencfg.dir/rule
 
 # Convenience name for target.
-nav_msgs_generate_messages_eus: move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+move_base_gencfg: move_base/CMakeFiles/move_base_gencfg.dir/rule
 
-.PHONY : nav_msgs_generate_messages_eus
+.PHONY : move_base_gencfg
 
 # fast build rule for target.
-nav_msgs_generate_messages_eus/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
-.PHONY : nav_msgs_generate_messages_eus/fast
+move_base_gencfg/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base_gencfg.dir/build.make move_base/CMakeFiles/move_base_gencfg.dir/build
+.PHONY : move_base_gencfg/fast
+
+# Convenience name for target.
+move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/rule
+.PHONY : move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+move_base_msgs_generate_messages_lisp: move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : move_base_msgs_generate_messages_lisp
+
+# fast build rule for target.
+move_base_msgs_generate_messages_lisp/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/build.make move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/build
+.PHONY : move_base_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 move_base/CMakeFiles/move_base_node.dir/rule:
@@ -254,6 +269,48 @@ move_base_node: move_base/CMakeFiles/move_base_node.dir/rule
 move_base_node/fast:
 	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base_node.dir/build.make move_base/CMakeFiles/move_base_node.dir/build
 .PHONY : move_base_node/fast
+
+# Convenience name for target.
+move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/rule
+.PHONY : move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+move_base_msgs_generate_messages_nodejs: move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : move_base_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+move_base_msgs_generate_messages_nodejs/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/build.make move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/build
+.PHONY : move_base_msgs_generate_messages_nodejs/fast
+
+src/move_base.o: src/move_base.cpp.o
+
+.PHONY : src/move_base.o
+
+# target to build an object file
+src/move_base.cpp.o:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base.dir/build.make move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o
+.PHONY : src/move_base.cpp.o
+
+src/move_base.i: src/move_base.cpp.i
+
+.PHONY : src/move_base.i
+
+# target to preprocess a source file
+src/move_base.cpp.i:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base.dir/build.make move_base/CMakeFiles/move_base.dir/src/move_base.cpp.i
+.PHONY : src/move_base.cpp.i
+
+src/move_base.s: src/move_base.cpp.s
+
+.PHONY : src/move_base.s
+
+# target to generate assembly for a file
+src/move_base.cpp.s:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f move_base/CMakeFiles/move_base.dir/build.make move_base/CMakeFiles/move_base.dir/src/move_base.cpp.s
+.PHONY : src/move_base.cpp.s
 
 src/move_base_node.o: src/move_base_node.cpp.o
 
@@ -288,19 +345,24 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... nav_msgs_generate_messages_lisp"
-	@echo "... install/local"
-	@echo "... nav_msgs_generate_messages_nodejs"
-	@echo "... nav_msgs_generate_messages_cpp"
-	@echo "... nav_msgs_generate_messages_py"
-	@echo "... install/strip"
-	@echo "... nav_msgs_generate_messages_eus"
-	@echo "... install"
-	@echo "... move_base_node"
-	@echo "... test"
+	@echo "... edit_cache"
 	@echo "... list_install_components"
+	@echo "... install/local"
+	@echo "... move_base_msgs_generate_messages_cpp"
+	@echo "... move_base_msgs_generate_messages_eus"
+	@echo "... move_base"
+	@echo "... move_base_msgs_generate_messages_py"
+	@echo "... move_base_gencfg"
+	@echo "... test"
+	@echo "... move_base_msgs_generate_messages_lisp"
+	@echo "... move_base_node"
+	@echo "... install/strip"
+	@echo "... move_base_msgs_generate_messages_nodejs"
+	@echo "... install"
+	@echo "... src/move_base.o"
+	@echo "... src/move_base.i"
+	@echo "... src/move_base.s"
 	@echo "... src/move_base_node.o"
 	@echo "... src/move_base_node.i"
 	@echo "... src/move_base_node.s"

@@ -54,3 +54,22 @@ Makefile:126: recipe for target 'cmTC_47ec7/fast' failed
 make: *** [cmTC_47ec7/fast] Error 2
 
 
+Determining if the include file pgm.h exists failed with the following output:
+Change Dir: /home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_48a95/fast"
+make[1]: Entering directory '/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_48a95.dir/build.make CMakeFiles/cmTC_48a95.dir/build
+make[2]: Entering directory '/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_48a95.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_48a95.dir/CheckIncludeFile.cxx.o -c /home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx:1:17: fatal error: pgm.h: No such file or directory
+compilation terminated.
+CMakeFiles/cmTC_48a95.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_48a95.dir/CheckIncludeFile.cxx.o' failed
+make[2]: *** [CMakeFiles/cmTC_48a95.dir/CheckIncludeFile.cxx.o] Error 1
+make[2]: Leaving directory '/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_48a95/fast' failed
+make[1]: *** [cmTC_48a95/fast] Error 2
+make[1]: Leaving directory '/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp'
+
+

@@ -582,3 +582,25 @@ Linking C executable cmTC_faf18
 make[1]: Leaving directory '/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp'
 
 
+The target system is: Linux - 3.10.104-126 - armv7l
+The host system is: Linux - 3.10.104-126 - armv7l
+Determining if the include file FL/Fl.H exists passed with the following output:
+Change Dir: /home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4ee1c/fast"
+make[1]: Entering directory '/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_4ee1c.dir/build.make CMakeFiles/cmTC_4ee1c.dir/build
+make[2]: Entering directory '/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4ee1c.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_4ee1c.dir/CheckIncludeFile.cxx.o -c /home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_4ee1c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4ee1c.dir/link.txt --verbose=1
+/usr/bin/c++         CMakeFiles/cmTC_4ee1c.dir/CheckIncludeFile.cxx.o  -o cmTC_4ee1c -rdynamic 
+make[2]: Leaving directory '/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/odroid/catkin_ws/build/CMakeFiles/CMakeTmp'
+
+
+The target system is: Linux - 3.10.104-126 - armv7l
+The host system is: Linux - 3.10.104-126 - armv7l
+The target system is: Linux - 3.10.104-126 - armv7l
+The host system is: Linux - 3.10.104-128 - armv7l
