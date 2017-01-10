@@ -30,7 +30,7 @@ char commandbuf[]="a2v:+aaaa,w:+000,r:360b";
 
 void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 {
-	
+/*	
 
 	if(msg.linear.x==2){
 		linearx = linearx+10;
@@ -63,7 +63,9 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
     {
     linearx =0;
     }
-
+*/
+	linearx = msg.linear.x*100;
+	angularz = msg.angular.z/3.14159265*180;
 	float vsf = linearx;//msg.linear.x * 100;
 	if(vsf<0)
 	{
@@ -166,7 +168,7 @@ int main(int argc, char** argv) {
 
 
       
-    ros::Subscriber move_base_sub = move_base_NodeHandle.subscribe("turtle1/cmd_vel",1000,&cmdMessageReceived);
+    ros::Subscriber move_base_sub = move_base_NodeHandle.subscribe("smoother_cmd_vel",1000,&cmdMessageReceived);
    ros::Publisher move_base_pub = move_base_NodeHandle.advertise<nav_msgs::Odometry>("odom", 1000);   
   	
     

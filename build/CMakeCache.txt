@@ -832,6 +832,12 @@ navigation_BINARY_DIR:STATIC=/home/odroid/catkin_ws/build/navigation-kinetic-dev
 //Value Computed by CMake
 navigation_SOURCE_DIR:STATIC=/home/odroid/catkin_ws/src/navigation-kinetic-devel/navigation
 
+//Value Computed by CMake
+navigation_qc_BINARY_DIR:STATIC=/home/odroid/catkin_ws/build/navigation_qc
+
+//Value Computed by CMake
+navigation_qc_SOURCE_DIR:STATIC=/home/odroid/catkin_ws/src/navigation_qc
+
 //The directory containing a CMake configuration file for nodelet.
 nodelet_DIR:PATH=/opt/ros/kinetic/share/nodelet/cmake
 
@@ -1157,7 +1163,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=29
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=30
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

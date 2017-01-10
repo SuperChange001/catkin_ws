@@ -13,5 +13,5 @@
 </node>
 <!--node pkg="move_base" type="move_base_node" name="move_base_node" output="screen"/-->
 <!--node pkg="odom_simulator" type="odom_publish" name="odom_publsih_node"/-->
-<node pkg="car_base" type="car_base" name="car_control_and_odom" output="screen"/>
+<!--node pkg="car_base" type="car_base" name="car_control_and_odom" output="screen"/-->
 </launch>

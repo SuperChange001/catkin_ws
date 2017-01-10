@@ -41,6 +41,13 @@
 /home/odroid/catkin_ws/build/navigation-kinetic-devel/navigation/CMakeFiles/install.dir
 /home/odroid/catkin_ws/build/navigation-kinetic-devel/navigation/CMakeFiles/test.dir
 /home/odroid/catkin_ws/build/navigation-kinetic-devel/navigation/CMakeFiles/list_install_components.dir
+/home/odroid/catkin_ws/build/navigation_qc/CMakeFiles/rebuild_cache.dir
+/home/odroid/catkin_ws/build/navigation_qc/CMakeFiles/edit_cache.dir
+/home/odroid/catkin_ws/build/navigation_qc/CMakeFiles/install/strip.dir
+/home/odroid/catkin_ws/build/navigation_qc/CMakeFiles/install/local.dir
+/home/odroid/catkin_ws/build/navigation_qc/CMakeFiles/install.dir
+/home/odroid/catkin_ws/build/navigation_qc/CMakeFiles/test.dir
+/home/odroid/catkin_ws/build/navigation_qc/CMakeFiles/list_install_components.dir
 /home/odroid/catkin_ws/build/super_slam/CMakeFiles/rebuild_cache.dir
 /home/odroid/catkin_ws/build/super_slam/CMakeFiles/edit_cache.dir
 /home/odroid/catkin_ws/build/super_slam/CMakeFiles/install/strip.dir

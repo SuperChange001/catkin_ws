@@ -432,6 +432,24 @@ navigation-kinetic-devel/navigation/preinstall:
 .PHONY : navigation-kinetic-devel/navigation/preinstall
 
 #=============================================================================
+# Directory level rules for directory navigation_qc
+
+# Convenience name for "all" pass in the directory.
+navigation_qc/all:
+
+.PHONY : navigation_qc/all
+
+# Convenience name for "clean" pass in the directory.
+navigation_qc/clean:
+
+.PHONY : navigation_qc/clean
+
+# Convenience name for "preinstall" pass in the directory.
+navigation_qc/preinstall:
+
+.PHONY : navigation_qc/preinstall
+
+#=============================================================================
 # Directory level rules for directory super_slam
 
 # Convenience name for "all" pass in the directory.
