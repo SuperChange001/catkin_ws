@@ -33,12 +33,12 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 /*	
 
 	if(msg.linear.x==2){
-		linearx = linearx+10;
-        angularz = 0;
+	    linearx = linearx+10;
+            angularz = 0;
 	}
 	if(msg.linear.x==-2){
-		linearx = linearx-10;
-        angularz=0;
+	    linearx = linearx-10;
+            angularz=0;
 	}
 	if(msg.angular.z==2){
 		angularz = angularz+3;
@@ -48,7 +48,6 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 		angularz = angularz-3;
 		linearx =0;
 	}
-
 
 	if(linearx>80)
 	    linearx=80;
@@ -167,8 +166,9 @@ int main(int argc, char** argv) {
     tf::TransformBroadcaster odom_broadcaster;
 
 
-      
-    ros::Subscriber move_base_sub = move_base_NodeHandle.subscribe("smoother_cmd_vel",1000,&cmdMessageReceived);
+//  ros::Subscriber move_base_sub = move_base_NodeHandle.subscribe("turtle1/cmd_vel",1000,&cmdMessageReceived);    
+ros::Subscriber move_base_sub = move_base_NodeHandle.subscribe("smoother_cmd_vel",1000,&cmdMessageReceived);
+//ros::Subscriber move_base_sub = move_base_NodeHandle.subscribe("cmd_vel",1000,&cmdMessageReceived);
    ros::Publisher move_base_pub = move_base_NodeHandle.advertise<nav_msgs::Odometry>("odom", 1000);   
   	
     

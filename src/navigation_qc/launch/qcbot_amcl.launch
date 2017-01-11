@@ -1,0 +1,21 @@
+<launch>
+
+  <!--导航包（move_base）和定位(amcl)的启动文件:qcbot_amcl.launch-->
+
+  <param name="use_sim_time" value="false" />
+
+  <!-- Set the name of the map yaml file: can be overridden on the command line. -->
+  <arg name="map" default="mymap.yaml" />
+
+  <!--node name="map_odom" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map odom 50"/-->  
+
+  <!-- Run the map server with the desired map -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find navigation_qc)/maps/$(arg map)"/>
+
+  <!-- The move_base node -->
+  <include file="$(find navigation_qc)/launch/move_base_amcl.launch" />
+  
+  <!--qc add Fire up AMCL-->
+  <include file="$(find navigation_qc)/launch/tb_amcl.launch" />
+  
+</launch>
