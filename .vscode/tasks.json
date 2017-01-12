@@ -1,0 +1,179 @@
+{
+	"version": "0.1.0",
+	"command": "bash",
+	"args": [
+		"-c"
+	],
+	"isShellCommand": true,
+	"showOutput": "always",
+	"suppressTaskName": true,
+	"tasks": [
+		{
+			"taskName": "Debug",
+			"args": [
+				"catkin_make -C ${workspaceRoot} -DCMAKE_BUILD_TYPE=Debug"
+			],
+			"problemMatcher": {
+				"owner": "cpp",
+				"fileLocation": [
+					"absolute"
+				],
+				"pattern": {
+					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+					"file": 1,
+					"line": 2,
+					"column": 3,
+					"severity": 4,
+					"message": 5
+				}
+			}
+		},
+		{
+			"taskName": "Release",
+			"args": [
+				"catkin_make -C ${workspaceRoot}"
+			],
+			"problemMatcher": {
+				"owner": "cpp",
+				"fileLocation": [
+					"absolute"
+				],
+				"pattern": {
+					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+					"file": 1,
+					"line": 2,
+					"column": 3,
+					"severity": 4,
+					"message": 5
+				}
+			}
+		},
+		{
+			"taskName": "Debug (isolated)",
+			"args": [
+				"catkin_make_isolated -C ${workspaceRoot} -DCMAKE_BUILD_TYPE=Debug"
+			],
+			"problemMatcher": {
+				"owner": "cpp",
+				"fileLocation": [
+					"absolute"
+				],
+				"pattern": {
+					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+					"file": 1,
+					"line": 2,
+					"column": 3,
+					"severity": 4,
+					"message": 5
+				}
+			}
+		},
+		{
+			"taskName": "Release (isolated)",
+			"args": [
+				"catkin_make_isolated -C ${workspaceRoot}"
+			],
+			"problemMatcher": {
+				"owner": "cpp",
+				"fileLocation": [
+					"absolute"
+				],
+				"pattern": {
+					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+					"file": 1,
+					"line": 2,
+					"column": 3,
+					"severity": 4,
+					"message": 5
+				}
+			}
+		},
+		{
+			"taskName": "Debug (remote)",
+			"args": [
+				"ssh odroid@odroid 'echo -e \"#!/bin/bash --login\\ncatkin_make -C /home/odroid/catkin_ws -DCMAKE_BUILD_TYPE=Debug\" > /tmp/roswstmp.sh; chmod 755 /tmp/roswstmp.sh; /tmp/roswstmp.sh'"
+			],
+			"problemMatcher": {
+				"owner": "cpp",
+				"fileLocation": [
+					"absolute"
+				],
+				"pattern": {
+					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+					"file": 1,
+					"line": 2,
+					"column": 3,
+					"severity": 4,
+					"message": 5
+				}
+			}
+		},
+		{
+			"taskName": "Release (remote)",
+			"args": [
+				"ssh odroid@odroid 'echo -e \"#!/bin/bash --login\\ncatkin_make -C /home/odroid/catkin_ws\" > /tmp/roswstmp.sh; chmod 755 /tmp/roswstmp.sh; /tmp/roswstmp.sh'"
+			],
+			"problemMatcher": {
+				"owner": "cpp",
+				"fileLocation": [
+					"absolute"
+				],
+				"pattern": {
+					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+					"file": 1,
+					"line": 2,
+					"column": 3,
+					"severity": 4,
+					"message": 5
+				}
+			}
+		},
+		{
+			"taskName": "Debug (remote isolated)",
+			"args": [
+				"ssh odroid@odroid 'echo -e \"#!/bin/bash --login\\ncatkin_make_isolated -C /home/odroid/catkin_ws -DCMAKE_BUILD_TYPE=Debug\" > /tmp/roswstmp.sh; chmod 755 /tmp/roswstmp.sh; /tmp/roswstmp.sh'"
+			],
+			"problemMatcher": {
+				"owner": "cpp",
+				"fileLocation": [
+					"absolute"
+				],
+				"pattern": {
+					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+					"file": 1,
+					"line": 2,
+					"column": 3,
+					"severity": 4,
+					"message": 5
+				}
+			}
+		},
+		{
+			"taskName": "Release (remote isolated)",
+			"args": [
+				"ssh odroid@odroid 'echo -e \"#!/bin/bash --login\\ncatkin_make_isolated -C /home/odroid/catkin_ws\" > /tmp/roswstmp.sh; chmod 755 /tmp/roswstmp.sh; /tmp/roswstmp.sh'"
+			],
+			"problemMatcher": {
+				"owner": "cpp",
+				"fileLocation": [
+					"absolute"
+				],
+				"pattern": {
+					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+					"file": 1,
+					"line": 2,
+					"column": 3,
+					"severity": 4,
+					"message": 5
+				}
+			}
+		},
+		{
+			"taskName": "Remote Deploy",
+			"args": [
+				"ssh odroid@odroid 'rm -rf /home/odroid/catkin_ws; mkdir /home/odroid/catkin_ws'; scp -r ${workspaceRoot}/src odroid@odroid:/home/odroid/catkin_ws/src; ssh odroid@odroid 'rm /home/odroid/catkin_ws/src/CMakeLists.txt; echo -e \"#!/bin/bash --login\\ncatkin_init_workspace /home/odroid/catkin_ws/src\" > /tmp/roswstmp.sh; chmod 755 /tmp/roswstmp.sh; /tmp/roswstmp.sh'; echo \"Deploy Finished!\""
+			],
+			"isBuildCommand": true
+		}
+	]
+}
