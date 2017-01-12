@@ -1,5 +1,5 @@
 eval "$(ssh-agent -s)"
 
-ssh-add ~/odroid_key
+ssh-add ~/ssh_key/gitkey
 
 git push
