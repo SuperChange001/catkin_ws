@@ -751,6 +751,12 @@ hector_slam_example_SOURCE_DIR:STATIC=/home/odroid/catkin_ws/src/hector_slam_exa
 //The directory containing a CMake configuration file for image_transport.
 image_transport_DIR:PATH=/opt/ros/kinetic/share/image_transport/cmake
 
+//Value Computed by CMake
+key_control_base_BINARY_DIR:STATIC=/home/odroid/catkin_ws/build/key_control_base
+
+//Value Computed by CMake
+key_control_base_SOURCE_DIR:STATIC=/home/odroid/catkin_ws/src/key_control_base
+
 //The directory containing a CMake configuration file for laser_geometry.
 laser_geometry_DIR:PATH=/opt/ros/kinetic/share/laser_geometry/cmake
 
@@ -1163,7 +1169,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=30
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=31
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

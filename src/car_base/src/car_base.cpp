@@ -97,12 +97,12 @@ void cmdMessageReceived(const geometry_msgs::Twist&msg)//
 	commandbuf[15] = 0x30 + rsi%10;
 //        angularz = 0;
 
-	ROS_INFO_STREAM("Getting command:"
+/*	ROS_INFO_STREAM("Getting command:"
 		<<"linear"<<msg.linear.x
 		<<", angular"<<msg.angular.z
 		<<" ==== vs:"<<  linearx
 		<<", ws:"<<angularz
-	);
+	);*/
 }
 
 void odom_calculate(tf::TransformBroadcaster&ob,ros::Publisher&p,double vx, double vy, double vth,double x, double y, double th)

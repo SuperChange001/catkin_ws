@@ -8,39 +8,39 @@
 
     <param name="use_map_topic" value="$(arg use_map_topic)"/>
     <!-- Publish scans from best pose at a max of 10 Hz -->
-    <param name="odom_model_type" value="diff"/>
-    <param name="odom_alpha5" value="0.1"/>
-    <param name="gui_publish_rate" value="10.0"/>
-    <param name="laser_max_beams" value="60"/>
-    <param name="laser_max_range" value="12.0"/>
-    <param name="min_particles" value="500"/>
-    <param name="max_particles" value="2000"/>
-    <param name="kld_err" value="0.05"/>
-    <param name="kld_z" value="0.99"/>
-    <param name="odom_alpha1" value="0.2"/>
-    <param name="odom_alpha2" value="0.2"/>
-    <!-- translation std dev, m -->
-    <param name="odom_alpha3" value="0.2"/>
-    <param name="odom_alpha4" value="0.2"/>
-    <param name="laser_z_hit" value="0.5"/>
-    <param name="laser_z_short" value="0.05"/>
-    <param name="laser_z_max" value="0.05"/>
-    <param name="laser_z_rand" value="0.5"/>
-    <param name="laser_sigma_hit" value="0.2"/>
-    <param name="laser_lambda_short" value="0.1"/>
-    <param name="laser_model_type" value="likelihood_field"/>
-    <!-- <param name="laser_model_type" value="beam"/> -->
-    <param name="laser_likelihood_max_dist" value="2.0"/>
-    <param name="update_min_d" value="0.25"/>
-    <param name="update_min_a" value="0.2"/>
+    <param name="odom_model_type" value="diff"/>    <!-- 机器人类型，两轮差分 -->
+    <param name="odom_alpha5" value="0.1"/>     <!-- Translation-related noise parameter (only used if model is "omni") -->
+    <param name="gui_publish_rate" value="100.0"/>     <!-- Maximum rate (Hz) at which scans and paths are published for visualization, -1.0 to disable -->
+    <param name="laser_max_beams" value="60"/>     <!-- How many evenly-spaced beams in each scan to be used when updating the filter -->
+    <param name="laser_max_range" value="8.0"/>    <!-- Maximum scan range to be considered; -1.0 will cause the laser's reported maximum range to be used. -->
+    <param name="min_particles" value="500"/>    <!-- Minimum allowed number of particles.  -->
+    <param name="max_particles" value="5000"/>    <!-- Maximum allowed number of particles.  -->
+    <param name="kld_err" value="0.1"/>    <!-- Maximum error between the true distribution and the estimated distribution.  -->
+    <param name="kld_z" value="0.99"/>    <!-- Upper standard normal quantile for (1 - p), where p is the probability that the error on the estimated distrubition will be less than kld_err.  -->
+    <param name="odom_alpha1" value="0.2"/>    <!-- 根据机器人运动的旋转分量指定里程表旋转估计中的预期噪声  -->
+    <param name="odom_alpha2" value="0.2"/>    <!-- 根据机器人运动的平移分量，指定里程表旋转估计中的预期噪声 -->
+    <!-- translation std dev, m -->    <!-- -->
+    <param name="odom_alpha3" value="0.2"/>    <!-- 从机器人运动的平移分量中指定odometry的翻译估计中的预期噪声 -->
+    <param name="odom_alpha4" value="0.2"/>    <!-- 根据机器人运动的旋转分量指定odometry的翻译估计中的预期噪声 -->
+    <param name="laser_z_hit" value="0.5"/>    <!-- 模型的z_hit部分的混合重量 -->
+    <param name="laser_z_short" value="0.05"/>    <!-- 模型的z_short部分的混合重量 -->
+    <param name="laser_z_max" value="0.05"/>    <!-- 模型的z_max部分的混合重量 -->
+    <param name="laser_z_rand" value="0.5"/>    <!-- 模型的z_rand部分的混合重量 -->
+    <param name="laser_sigma_hit" value="0.2"/>    <!-- 在模型的z_hit部分中使用的高斯模型的标准偏差 -->
+    <param name="laser_lambda_short" value="0.1"/>    <!-- 模型的z_short部分的指数衰减参数 -->
+    <param name="laser_model_type" value="likelihood_field"/>    <!-- 使用哪个模型，beam，likelihood_field或likelihood_field_prob（与likelihood_field相同，但包含beamkip功能，如果启用） -->
+    <!-- <param name="laser_model_type" value="beam"/> -->    <!-- -->
+    <param name="laser_likelihood_max_dist" value="2.0"/>    <!-- 在地图上做障碍物充气的最大距离，用于likelihood_field模型 -->
+    <param name="update_min_d" value="0.25"/>    <!-- 执行过滤器更新之前需要执行平移运动 -->
+    <param name="update_min_a" value="0.2"/>    <!-- 执行过滤器更新之前需要执行旋转运动 -->
 
-    <param name="odom_frame_id" value="odom"/>
+    <param name="odom_frame_id" value="odom"/>    <!-- -->
 
-    <param name="resample_interval" value="1"/>
-    <!-- Increase tolerance because the computer can get quite busy -->
-    <param name="transform_tolerance" value="1.0"/>
-    <param name="recovery_alpha_slow" value="0.0"/>
-    <param name="recovery_alpha_fast" value="0.0"/>
-    <remap from="scan" to="$(arg scan_topic)"/>
+    <param name="resample_interval" value="2"/>    <!-- 重新采样之前所需的过滤器更新数 -->
+    <!-- Increase tolerance because the computer can get quite busy -->   
+    <param name="transform_tolerance" value="0.1"/>    <!-- 发布已发布变换的时间，以指示此变换在未来有效 -->
+    <param name="recovery_alpha_slow" value="0.001"/>    <!-- 慢平均权重滤波器的指数衰减率，用于决定何时通过添加随机姿势来恢复。 良好的值可能为0.001 -->
+    <param name="recovery_alpha_fast" value="0.1"/>    <!-- 快速平均权重滤波器的指数衰减率，用于决定何时通过添加随机姿态来恢复。 好的值可能为0.1 -->
+    <remap from="scan" to="$(arg scan_topic)"/>    <!-- -->
   </node>
 </launch>

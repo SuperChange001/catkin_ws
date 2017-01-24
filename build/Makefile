@@ -946,6 +946,19 @@ first_serial_node/fast:
 .PHONY : first_serial_node/fast
 
 #=============================================================================
+# Target rules for targets named key_control_base
+
+# Build rule for target.
+key_control_base: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 key_control_base
+.PHONY : key_control_base
+
+# fast build rule for target.
+key_control_base/fast:
+	$(MAKE) -f key_control_base/CMakeFiles/key_control_base.dir/build.make key_control_base/CMakeFiles/key_control_base.dir/build
+.PHONY : key_control_base/fast
+
+#=============================================================================
 # Target rules for targets named odom_publish
 
 # Build rule for target.
@@ -4489,6 +4502,7 @@ help:
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... first_serial_node"
+	@echo "... key_control_base"
 	@echo "... odom_publish"
 	@echo "... serial_bridge_node"
 	@echo "... serial_bridge_test_node"
