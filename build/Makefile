@@ -972,6 +972,19 @@ odom_publish/fast:
 .PHONY : odom_publish/fast
 
 #=============================================================================
+# Target rules for targets named image_rotation_node
+
+# Build rule for target.
+image_rotation_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 image_rotation_node
+.PHONY : image_rotation_node
+
+# fast build rule for target.
+image_rotation_node/fast:
+	$(MAKE) -f image_rotation_toolbox/CMakeFiles/image_rotation_node.dir/build.make image_rotation_toolbox/CMakeFiles/image_rotation_node.dir/build
+.PHONY : image_rotation_node/fast
+
+#=============================================================================
 # Target rules for targets named serial_bridge_node
 
 # Build rule for target.
@@ -4504,6 +4517,7 @@ help:
 	@echo "... first_serial_node"
 	@echo "... key_control_base"
 	@echo "... odom_publish"
+	@echo "... image_rotation_node"
 	@echo "... serial_bridge_node"
 	@echo "... serial_bridge_test_node"
 	@echo "... astra_camera_node"
